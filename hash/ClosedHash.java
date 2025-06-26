@@ -19,6 +19,11 @@ public class ClosedHash<K,V> {
     private int size;
 
     //Constructor
+    /**
+     * Crea una tabla hash cerrada con el tamaño especificado.
+     *
+     * @param size Tamaño inicial de la tabla hash
+     */
     @SuppressWarnings("unchecked")
     public ClosedHash(int size) {
         this.size = size;
@@ -30,12 +35,30 @@ public class ClosedHash<K,V> {
     }
 
     //Metodos
+    /**
+     * Obtiene el tamaño de la tabla hash.
+     *
+     * @return Tamaño de la tabla
+     */
     public int getSize() {return this.size;}
 
+    /**
+     * Función hash básica basada en el código hash de la clave.
+     *
+     * @param key Clave para calcular la posición
+     * @return Índice calculado en la tabla hash
+     */
     private int hashFunction(K key) {
         return Math.abs(key.hashCode() % this.hashTable.length);
     }
 
+    /**
+     * Busca un registro en la tabla hash mediante su clave.
+     *
+     * @param key Clave a buscar
+     * @return El registro asociado a la clave
+     * @throws RuntimeException si la clave no se encuentra
+     */
     public Register<K,V> search(K key) throws RuntimeException {
 
         int posInit = this.hashFunction(key);
@@ -60,6 +83,14 @@ public class ClosedHash<K,V> {
 
     }
 
+    /**
+     * Inserta un nuevo par clave-valor en la tabla hash.
+     * Si la clave ya existe, sobrescribe el valor anterior.
+     *
+     * @param key   Clave a insertar
+     * @param value Valor asociado
+     * @throws RuntimeException si la tabla está llena
+     */
     public void insert(K key, V value) throws RuntimeException {
         int index = this.linearProbingInsert(key);
 
@@ -69,6 +100,13 @@ public class ClosedHash<K,V> {
         this.hashTable[index].setMark(Mark.OCUPPED);
     }
 
+    /**
+     * Busca una posición disponible en la tabla usando sondeo lineal.
+     * También puede devolver el índice actual si la clave ya existe.
+     *
+     * @param key Clave a insertar
+     * @return Índice para insertar o actualizar, o -1 si no hay espacio
+     */
     private int linearProbingInsert(K key) {
         
         int posInit = this.hashFunction(key);
@@ -91,6 +129,12 @@ public class ClosedHash<K,V> {
         return -1;
     }
 
+    /**
+     * Elimina un elemento de la tabla hash mediante su clave.
+     *
+     * @param key Clave a eliminar
+     * @throws RuntimeException si la clave no se encuentra
+     */
     public void delete(K key) throws RuntimeException {
         
         int posInit = this.hashFunction(key);
@@ -113,6 +157,10 @@ public class ClosedHash<K,V> {
         throw new RuntimeException("Clave no encontrada: " + key);
     }
 
+    /**
+     * Imprime el contenido de la tabla hash por consola.
+     * Muestra para cada índice si está ocupado o su estado de marca.
+     */
     public void printTable() {
 
         System.out.println("{");
