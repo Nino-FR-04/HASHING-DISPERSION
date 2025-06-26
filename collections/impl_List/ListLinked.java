@@ -9,7 +9,7 @@ import exceptions.ExceptionIsEmpty;
  *
  * @param E el tipo de elementos almacenados en la lista, que deben ser comparables.
  */
-public class ListLinked <E extends Comparable<E>> implements TADList<E> {
+public class ListLinked <E> implements TADList<E> {
     
     //Atributos
     protected Node<E> first; 

@@ -169,7 +169,7 @@ public class ClosedHash<K,V> {
             Element<K,V> element = this.hashTable[i];
 
             if(element.getMark() == Mark.OCUPPED) {
-                System.out.println("Index: " + i + " - " + element.getRegister());
+                System.out.println("  Index: " + i + " - " + element.getRegister());
                 continue;
             }
             System.out.println("Index: " + i + " - " + this.hashTable[i].getMark());

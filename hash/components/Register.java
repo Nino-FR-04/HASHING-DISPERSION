@@ -23,4 +23,14 @@ public class Register<K,V> {
     public String toString() {
         return "(" + this.key + ", " + this.value + ")";
     }
+
+    //Equals
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(obj == null || obj.getClass() != this.getClass()) return false;
+
+        Register<?,?> reg = (Register<?,?>) obj;
+        return this.key.equals(reg.key);
+    }
 }
