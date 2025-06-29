@@ -172,7 +172,7 @@ public class ClosedHash<K,V> {
                 System.out.println("  Index: " + i + " - " + element.getRegister());
                 continue;
             }
-            System.out.println("Index: " + i + " - " + this.hashTable[i].getMark());
+            System.out.println("  Index: " + i + " - " + this.hashTable[i].getMark());
         }
         System.out.println("}");
     }
